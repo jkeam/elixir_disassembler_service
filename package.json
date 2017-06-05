@@ -29,6 +29,7 @@
   "dependencies": {
     "base_disassembler_service": "jkeam/base_disassembler_service",
     "bluebird": "^3.5.0",
+    "fs-extra": "^3.0.1",
     "uuid": "^3.0.1"
   },
   "devDependencies": {

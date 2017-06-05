@@ -14,9 +14,12 @@ const Disassembler = require("../app/lib/disassembler");
 describe("Disassembler", function() {
   const disassembler = new Disassembler({logger, guid: '232'});
 
-  /*
   it("can disassemble", function(done) {
-    const code = '';
+    const code = `defmodule Hello do
+  def world do
+    IO.puts "Hello World"
+  end
+end`;
 
     disassembler.disassemble({code}).then((obj) => {
       expect(obj.result).to.not.be.null;
@@ -25,7 +28,6 @@ describe("Disassembler", function() {
       done(e);
     })
   });
-  */
 
   it("can handle errors", function(done) {
     const code = `this is not valid code`;
