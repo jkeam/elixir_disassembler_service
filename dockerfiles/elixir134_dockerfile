@@ -1,0 +1,26 @@
+FROM elixir:1.3.4
+
+# install wget
+RUN apt-get update && apt-get -f install && apt-get install wget
+
+# delete old version of node on ubuntu
+RUN apt-get --purge -y remove nodejs node npm
+RUN apt-get clean && apt-get -y autoclean && apt-get -y autoremove
+
+# install new node and npm
+RUN wget -qO- https://deb.nodesource.com/setup_7.x | bash -
+RUN apt-get install -y nodejs build-essential
+
+# create app dir
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# install app dependencies
+COPY package.json /usr/src/app/
+RUN npm install
+
+# bundle app source
+COPY . /usr/src/app
+
+EXPOSE 8134
+CMD [ "npm", "start" ]
